@@ -13,7 +13,6 @@ const Pallete = ({ pallete }) => {
 
     return (
         <div className="Pallete">
-            {/* Navbar Goes Here */}
             <Navbar
                 level={level}
                 setLevel={setLevel}
@@ -22,15 +21,18 @@ const Pallete = ({ pallete }) => {
 
             <div className="Pallete-colors">
                 {/* Bunch of color boxes */}
-                {pallete.colors[level].map((color, i) => (
+                {pallete.colors[level].map(color => (
                     <ColorBox
                         background={color[format]}
                         name={color.name}
-                        key={i}
+                        key={color.id}
                     />
                 ))}
             </div>
-            {/* Footer */}
+            <footer className="pallete-footer">
+                {pallete.paletteName}
+                <span className="emoji">{pallete.emoji}</span>
+            </footer>
         </div>
     );
 };
