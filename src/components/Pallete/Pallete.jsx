@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ColorBox from "../ColorBox/ColorBox.jsx";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 import "./Pallete.css";
+import Navbar from "../Navbar/Navbar.jsx";
 
 const Pallete = ({ pallete }) => {
     const [level, setLevel] = useState(500);
@@ -10,15 +9,7 @@ const Pallete = ({ pallete }) => {
     return (
         <div className="Pallete">
             {/* Navbar Goes Here */}
-            <div className="slider">
-                <Slider
-                    defaultValue={level}
-                    min={100}
-                    max={900}
-                    step={100}
-                    onAfterChange={level => setLevel(level)}
-                />
-            </div>
+            <Navbar level={level} setLevel={setLevel} />
 
             <div className="Pallete-colors">
                 {/* Bunch of color boxes */}
