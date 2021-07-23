@@ -4,12 +4,13 @@ export const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: "blue",
         height: "100%",
+        minHeight: "100vh",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
     },
     container: {
-        width: "50%",
+        width: "60%",
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
@@ -26,8 +27,8 @@ export const useStyles = makeStyles(theme => ({
         boxSizing: "border-box",
         width: "100%",
         display: "grid",
-        gridTemplateColumns: "repeat(3, 30%)",
-        gap: "5%"
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "20px"
     },
 
 }));

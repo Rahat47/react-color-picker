@@ -15,8 +15,19 @@ export const useStyles = makeStyles(theme => ({
         }
     },
     colors: {
-        backgroundColor: "grey",
-
+        backgroundColor: "#dae1e4",
+        height: "150px",
+        width: "100%",
+        borderRadius: "5px",
+        overflow: "hidden"
+    },
+    miniColor: {
+        height: "25%",
+        width: "20%",
+        display: "inline-block",
+        margin: "0 auto",
+        position: "relative",
+        marginBottom: "-3.5px",
     },
     title: {
         display: "flex",
