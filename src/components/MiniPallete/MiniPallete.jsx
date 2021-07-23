@@ -1,12 +1,15 @@
 import { useStyles } from "./MiniPallete.styles.js";
+import { useHistory } from "react-router-dom";
 
 const MiniPallete = ({ paletteName, id, emoji, colors }) => {
     const classes = useStyles();
-
+    const history = useHistory();
     return (
-        <div className={classes.root}>
+        <div
+            onClick={() => history.push(`/pallete/${id}`)}
+            className={classes.root}
+        >
             <div className={classes.colors}>
-                {/* Mini color boxes */}
                 {colors.map((color, index) => (
                     <div
                         style={{
