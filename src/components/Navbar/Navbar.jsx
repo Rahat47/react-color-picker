@@ -4,6 +4,7 @@ import { IconButton, MenuItem, Select, Snackbar } from "@material-ui/core";
 import Slider from "rc-slider";
 import { useState } from "react";
 import { Close } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ level, setLevel, handleChange }) => {
     const [format, setFormat] = useState("hex");
@@ -18,7 +19,7 @@ const Navbar = ({ level, setLevel, handleChange }) => {
     return (
         <header className="Navbar">
             <div className="logo">
-                <a href="/">ColorPicker</a>
+                <Link to="/">ColorPicker</Link>
             </div>
             <div className="slider-container">
                 <span>Level: {level}</span>
