@@ -1,10 +1,14 @@
 import { useStyles } from "./MiniPallete.styles.js";
 
-const MiniPallete = () => {
+const MiniPallete = ({ paletteName, id, emoji, colors }) => {
     const classes = useStyles();
+
     return (
-        <div>
-            <h1 className={classes.main}>Mini Pallete</h1>
+        <div className={classes.root}>
+            <div className={classes.colors}></div>
+            <h5 className={classes.title}>
+                {paletteName} <span className={classes.emoji}>{emoji}</span>
+            </h5>
         </div>
     );
 };
