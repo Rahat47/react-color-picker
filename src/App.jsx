@@ -17,6 +17,7 @@ function App() {
             </Route>
 
             <Route
+                exact
                 path="/pallete/:id"
                 render={routeProps => (
                     <Pallete
@@ -26,6 +27,10 @@ function App() {
                     />
                 )}
             />
+
+            <Route exact path="/pallete/:palleteId/:colorId">
+                <h1>Single Color Page</h1>
+            </Route>
         </Switch>
     );
 }
