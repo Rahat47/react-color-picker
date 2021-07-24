@@ -29,9 +29,18 @@ function App() {
                 )}
             />
 
-            <Route exact path="/pallete/:palleteId/:colorId">
-                <SingleColorPallete />
-            </Route>
+            <Route
+                exact
+                path="/pallete/:palleteId/:colorId"
+                render={routeProps => (
+                    <SingleColorPallete
+                        colorId={routeProps.match.params.colorId}
+                        pallete={generatePalletes(
+                            findPalleteById(routeProps.match.params.palleteId)
+                        )}
+                    />
+                )}
+            />
         </Switch>
     );
 }
