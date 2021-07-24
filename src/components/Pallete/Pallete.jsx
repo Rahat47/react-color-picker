@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ColorBox from "../ColorBox/ColorBox.jsx";
 import "./Pallete.css";
 import Navbar from "../Navbar/Navbar.jsx";
+import PalleteFooter from "../PalleteFooter/PalleteFooter.jsx";
 
 const Pallete = ({ pallete }) => {
     const [level, setLevel] = useState(500);
@@ -31,10 +32,8 @@ const Pallete = ({ pallete }) => {
                     />
                 ))}
             </div>
-            <footer className="pallete-footer">
-                {pallete.paletteName}
-                <span className="emoji">{pallete.emoji}</span>
-            </footer>
+
+            <PalleteFooter pallete={pallete} />
         </div>
     );
 };

@@ -21,18 +21,20 @@ const Navbar = ({ level, setLevel, handleChange }) => {
             <div className="logo">
                 <Link to="/">ColorPicker</Link>
             </div>
-            <div className="slider-container">
-                <span>Level: {level}</span>
-                <div className="slider">
-                    <Slider
-                        defaultValue={level}
-                        min={100}
-                        max={900}
-                        step={100}
-                        onAfterChange={level => setLevel(level)}
-                    />
+            {level && (
+                <div className="slider-container">
+                    <span>Level: {level}</span>
+                    <div className="slider">
+                        <Slider
+                            defaultValue={level}
+                            min={100}
+                            max={900}
+                            step={100}
+                            onAfterChange={level => setLevel(level)}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
 
             <div className="select-container">
                 <Select

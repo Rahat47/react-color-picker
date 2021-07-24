@@ -8,7 +8,8 @@
     margin-bottom: -3.5px;
 }
 
-.copy-button {
+.copy-button,
+.back-button {
     position: absolute;
     display: inline-block;
     cursor: pointer;
@@ -25,6 +26,12 @@
     border: none;
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+.back-button {
+    opacity: 1;
+    text-decoration: none;
+    padding: 5px;
 }
 
 .Color-box:hover .copy-button {
@@ -112,4 +119,12 @@
 .copy-msg p {
     font-size: 2rem;
     font-weight: 100;
+}
+
+.single-color-pallete .Color-box {
+    height: 50%;
+}
+
+.Color-box.goBack {
+    background: black;
 }
