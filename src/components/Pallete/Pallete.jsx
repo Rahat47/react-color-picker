@@ -23,6 +23,8 @@ const Pallete = ({ pallete }) => {
                 {/* Bunch of color boxes */}
                 {pallete.colors[level].map(color => (
                     <ColorBox
+                        palleteId={pallete.id}
+                        colorId={color.id}
                         background={color[format]}
                         name={color.name}
                         key={color.id}

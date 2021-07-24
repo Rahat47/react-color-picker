@@ -3,6 +3,7 @@ import { generatePalletes } from "./helpers/colorHelpers.js";
 import seedColors from "./seedColors.js";
 import { Route, Switch } from "react-router-dom";
 import PalleteList from "./components/PalleteList/PalleteList.jsx";
+import SingleColorPallete from "./components/SingleColorPallete/SingleColorPallete.jsx";
 
 function App() {
     //finds a pallete from seedColors array where id mathces the parameter ID
@@ -29,7 +30,7 @@ function App() {
             />
 
             <Route exact path="/pallete/:palleteId/:colorId">
-                <h1>Single Color Page</h1>
+                <SingleColorPallete />
             </Route>
         </Switch>
     );
