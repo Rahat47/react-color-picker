@@ -1,7 +1,8 @@
 .Pallete {
-    height: 100vh;
+    height: 120vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .Pallete-colors {

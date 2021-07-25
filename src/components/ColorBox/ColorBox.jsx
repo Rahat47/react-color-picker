@@ -21,16 +21,22 @@ const ColorBox = ({ background, name, palleteId, colorId, classes }) => {
             <div style={{ background }} className={classes.colorBox}>
                 <div
                     style={{ background }}
-                    className={`copy-overlay ${copied && "show"}`}
+                    className={`${classes.copyOverlay} ${
+                        copied && classes.showOverlay
+                    }`}
                 ></div>
 
-                <div className={`copy-msg ${copied && "show"}`}>
+                <div
+                    className={`${classes.copyMsg} ${
+                        copied && classes.showCopyMsg
+                    }`}
+                >
                     <h1 className={classes.copyText}>Copied!</h1>
                     <p className={classes.copyText}>{background}</p>
                 </div>
 
-                <div className="copy-container">
-                    <div className="box-content">
+                <div>
+                    <div className={classes.boxContent}>
                         <span className={classes.colorName}>{name}</span>
                     </div>
                     <button className={classes.copyButton}>Copy</button>
