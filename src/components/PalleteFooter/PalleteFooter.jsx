@@ -1,8 +1,11 @@
+import { useStyles } from "./PalleteFooter.styles.js";
+
 const PalleteFooter = ({ pallete }) => {
+    const classes = useStyles();
     return (
-        <footer className="pallete-footer">
+        <footer className={classes.footer}>
             {pallete.paletteName}
-            <span className="emoji">{pallete.emoji}</span>
+            <span className={classes.emoji}>{pallete.emoji}</span>
         </footer>
     );
 };

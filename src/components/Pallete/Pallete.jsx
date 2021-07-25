@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ColorBox from "../ColorBox/ColorBox.jsx";
-import "./Pallete.css";
 import Navbar from "../Navbar/Navbar.jsx";
 import PalleteFooter from "../PalleteFooter/PalleteFooter.jsx";
+import { useStyles } from "./Pallete.styles.js";
 
 const Pallete = ({ pallete }) => {
+    const classes = useStyles();
     const [level, setLevel] = useState(500);
     const [format, setFormat] = useState("hex");
 
@@ -13,14 +14,14 @@ const Pallete = ({ pallete }) => {
     };
 
     return (
-        <div className="Pallete">
+        <div className={classes.root}>
             <Navbar
                 level={level}
                 setLevel={setLevel}
                 handleChange={changeFormat}
             />
 
-            <div className="Pallete-colors">
+            <div className={classes.colors}>
                 {/* Bunch of color boxes */}
                 {pallete.colors[level].map(color => (
                     <ColorBox

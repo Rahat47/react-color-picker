@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ColorBox from "../ColorBox/ColorBox.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
 import PalleteFooter from "../PalleteFooter/PalleteFooter.jsx";
+import { useStyles } from "./SingleColorPallete.styles.js";
 
 const SingleColorPallete = ({ pallete, colorId }) => {
     const [format, setFormat] = useState("hex");
@@ -38,14 +39,19 @@ const SingleColorPallete = ({ pallete, colorId }) => {
         />
     ));
 
+    const classes = useStyles();
+
     return (
-        <div className="Pallete single-color-pallete">
+        <div className={classes.root}>
             <Navbar handleChange={changeFormat} />
-            <div className="Pallete-colors">
+            <div className={classes.colors}>
                 {colorBoxes}
 
-                <div className="goBack Color-box">
-                    <Link className="back-button" to={`/pallete/${pallete.id}`}>
+                <div className={classes.goBack}>
+                    <Link
+                        className={classes.backButton}
+                        to={`/pallete/${pallete.id}`}
+                    >
                         Go Back
                     </Link>
                 </div>
