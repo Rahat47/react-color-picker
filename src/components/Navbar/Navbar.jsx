@@ -1,14 +1,16 @@
 import "rc-slider/assets/index.css";
-import "./Navbar.css";
-import { IconButton, MenuItem, Select, Snackbar } from "@material-ui/core";
-import Slider from "rc-slider";
-import { useState } from "react";
-import { Close } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { IconButton, MenuItem, Select, Snackbar } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
+import Slider from "rc-slider";
+
+import { useStyles } from "./Navbar.styles.js";
 
 const Navbar = ({ level, setLevel, handleChange }) => {
     const [format, setFormat] = useState("hex");
     const [open, setOpen] = useState(false);
+    const classes = useStyles();
 
     const handleChangeFormat = event => {
         setFormat(event.target.value);
@@ -17,14 +19,14 @@ const Navbar = ({ level, setLevel, handleChange }) => {
     };
 
     return (
-        <header className="Navbar">
-            <div className="logo">
+        <header className={classes.root}>
+            <div className={classes.logo}>
                 <Link to="/">ColorPicker</Link>
             </div>
             {level && (
                 <div className="slider-container">
                     <span>Level: {level}</span>
-                    <div className="slider">
+                    <div className={classes.slider}>
                         <Slider
                             defaultValue={level}
                             min={100}
@@ -36,7 +38,7 @@ const Navbar = ({ level, setLevel, handleChange }) => {
                 </div>
             )}
 
-            <div className="select-container">
+            <div className={classes.selectContainer}>
                 <Select
                     defaultValue={format}
                     value={format}
