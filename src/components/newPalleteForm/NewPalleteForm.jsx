@@ -13,11 +13,12 @@ import { Menu, ChevronLeft } from "@material-ui/icons";
 import { useState } from "react";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
 import { ChromePicker } from "react-color";
+import DraggableColorBox from "../DraggableColorBox/DraggableColorBox.jsx";
 
 const NewPalleteForm = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [color, setColor] = useState("#ffffff");
+    const [color, setColor] = useState("rgba(255, 255, 255, 1)");
     const [colors, setColors] = useState(["purple", "green"]);
 
     const handleDrawerOpen = () => {
@@ -29,15 +30,18 @@ const NewPalleteForm = () => {
     };
 
     const updateCurrentColor = color => {
-        // console.log(color);
-        setColor(color.hex);
+        console.log(color);
+        // const newColorHex = color.hex;
+        const newColorRgba = `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
+        // const newColorHSLA = `hsla(${color.hsl.h}, ${color.hsl.s}, ${color.hsl.l}, ${color.hsl.a})`;
+        // const newColorHSL = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
+        setColor(newColorRgba);
     };
 
     const createColor = () => {
         setColors([...colors, color]);
     };
 
-    console.log(color);
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -116,11 +120,10 @@ const NewPalleteForm = () => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                <ul>
-                    {colors.map(color => (
-                        <li style={{ backgroundColor: color }}>{color}</li>
-                    ))}
-                </ul>
+
+                {colors.map((color, i) => (
+                    <DraggableColorBox key={i} color={color} />
+                ))}
             </main>
         </div>
     );
