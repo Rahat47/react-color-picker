@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import {
     AppBar,
+    Button,
     CssBaseline,
     Divider,
     Drawer,
@@ -10,7 +11,8 @@ import {
 } from "@material-ui/core";
 import { Menu, ChevronLeft } from "@material-ui/icons";
 import { useState } from "react";
-import { useStyles } from "../Navbar/Navbar.styles.js";
+import { useStyles } from "../newPalleteForm/newPallete.styles.js";
+import { ChromePicker } from "react-color";
 
 const NewPalleteForm = () => {
     const classes = useStyles();
@@ -66,6 +68,25 @@ const NewPalleteForm = () => {
                     </IconButton>
                 </div>
                 <Divider />
+                <Typography variant="h4">Design Your Pallete</Typography>
+
+                <div>
+                    <Button variant="contained" color="secondary">
+                        Clear Pallete
+                    </Button>
+                    <Button variant="contained" color="primary">
+                        Random Color
+                    </Button>
+                </div>
+
+                <ChromePicker
+                    color="purple"
+                    onChangeComplete={newColor => console.log(newColor)}
+                />
+
+                <Button variant="contained" color="primary">
+                    Add Color
+                </Button>
             </Drawer>
 
             <main
