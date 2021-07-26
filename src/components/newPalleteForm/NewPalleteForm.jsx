@@ -14,12 +14,27 @@ import { useState } from "react";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
 import { ChromePicker } from "react-color";
 import DraggableColorBox from "../DraggableColorBox/DraggableColorBox.jsx";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useEffect } from "react";
 
 const NewPalleteForm = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("rgba(255, 255, 255, 1)");
-    const [colors, setColors] = useState(["purple", "green"]);
+    const [colors, setColors] = useState([]);
+    const [colorName, setColorName] = useState("");
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule("isColorNameUnique", value => {
+            return colors.every(
+                color => color.name.toLowerCase() !== value.toLowerCase()
+            );
+        });
+
+        ValidatorForm.addValidationRule("isColorUnique", value => {
+            return colors.every(col => col.color !== color);
+        });
+    }, [color, colors]);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -38,8 +53,21 @@ const NewPalleteForm = () => {
         setColor(newColorRgba);
     };
 
+    const clearColors = () => {
+        setColors([]);
+    };
+
     const createColor = () => {
-        setColors([...colors, color]);
+        const newColor = {
+            name: colorName,
+            color,
+        };
+        setColors([...colors, newColor]);
+        setColorName("");
+    };
+
+    const handleChange = e => {
+        setColorName(e.target.value);
     };
 
     return (
@@ -87,7 +115,11 @@ const NewPalleteForm = () => {
                 <Typography variant="h4">Design Your Pallete</Typography>
 
                 <div>
-                    <Button variant="contained" color="secondary">
+                    <Button
+                        onClick={clearColors}
+                        variant="contained"
+                        color="secondary"
+                    >
                         Clear Pallete
                     </Button>
                     <Button variant="contained" color="primary">
@@ -103,15 +135,32 @@ const NewPalleteForm = () => {
                     // }}
                 />
 
-                <Button
-                    style={{
-                        backgroundColor: color,
-                    }}
-                    variant="contained"
-                    onClick={createColor}
-                >
-                    Add Color
-                </Button>
+                <ValidatorForm onSubmit={createColor}>
+                    <TextValidator
+                        validators={[
+                            "required",
+                            "isColorNameUnique",
+                            "isColorUnique",
+                        ]}
+                        errorMessages={[
+                            "this field is required",
+                            "this color name is not unique",
+                            "this color is already used",
+                        ]}
+                        value={colorName}
+                        onChange={handleChange}
+                    />
+
+                    <Button
+                        style={{
+                            backgroundColor: color,
+                        }}
+                        variant="contained"
+                        type="submit"
+                    >
+                        Add Color
+                    </Button>
+                </ValidatorForm>
             </Drawer>
 
             <main
@@ -122,7 +171,11 @@ const NewPalleteForm = () => {
                 <div className={classes.drawerHeader} />
 
                 {colors.map((color, i) => (
-                    <DraggableColorBox key={i} color={color} />
+                    <DraggableColorBox
+                        key={i}
+                        color={color.color}
+                        name={color.name}
+                    />
                 ))}
             </main>
         </div>

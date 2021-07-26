@@ -1,6 +1,6 @@
 import { useStyles } from "./DraggableColorbox.styles.js";
 
-const DraggableColorBox = ({ color }) => {
+const DraggableColorBox = ({ color, name }) => {
     const classes = useStyles();
 
     return (
@@ -10,7 +10,7 @@ const DraggableColorBox = ({ color }) => {
             }}
             className={classes.root}
         >
-            {color}
+            {name}
         </div>
     );
 };
