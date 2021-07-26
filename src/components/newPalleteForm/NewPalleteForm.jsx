@@ -64,6 +64,7 @@ const NewPalleteForm = () => {
         };
         setColors([...colors, newColor]);
         setColorName("");
+        setColor("rgba(255, 255, 255, 1)");
     };
 
     const handleChange = e => {
