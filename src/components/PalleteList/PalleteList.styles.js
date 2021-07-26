@@ -21,7 +21,13 @@ export const useStyles = makeStyles(theme => ({
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
-        color: "white"
+        color: "white",
+        alignItems: "center",
+
+        "& a": {
+            color: "white",
+
+        }
     },
     palletes: {
         boxSizing: "border-box",

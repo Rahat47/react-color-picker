@@ -4,6 +4,7 @@ import seedColors from "./seedColors.js";
 import { Route, Switch } from "react-router-dom";
 import PalleteList from "./components/PalleteList/PalleteList.jsx";
 import SingleColorPallete from "./components/SingleColorPallete/SingleColorPallete.jsx";
+import NewPalleteForm from "./components/newPalleteForm/NewPalleteForm.jsx";
 
 function App() {
     //finds a pallete from seedColors array where id mathces the parameter ID
@@ -13,8 +14,8 @@ function App() {
 
     return (
         <Switch>
-            <Route exact path="/">
-                <PalleteList palletes={seedColors} />
+            <Route exact path="/pallete/new">
+                <NewPalleteForm />
             </Route>
 
             <Route
@@ -41,6 +42,10 @@ function App() {
                     />
                 )}
             />
+
+            <Route exact path="/">
+                <PalleteList palletes={seedColors} />
+            </Route>
         </Switch>
     );
 }

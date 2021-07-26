@@ -4,7 +4,6 @@ import { useState } from "react";
 import { IconButton, MenuItem, Select, Snackbar } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import Slider from "rc-slider";
-
 import { useStyles } from "./Navbar.styles.js";
 
 const Navbar = ({ level, setLevel, handleChange }) => {
