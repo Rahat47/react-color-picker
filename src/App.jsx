@@ -5,17 +5,24 @@ import { Route, Switch } from "react-router-dom";
 import PalleteList from "./components/PalleteList/PalleteList.jsx";
 import SingleColorPallete from "./components/SingleColorPallete/SingleColorPallete.jsx";
 import NewPalleteForm from "./components/newPalleteForm/NewPalleteForm.jsx";
+import { useState } from "react";
 
 function App() {
+    const [palletes, setPalletes] = useState(seedColors);
+
     //finds a pallete from seedColors array where id mathces the parameter ID
     const findPalleteById = id => {
-        return seedColors.find(pallete => pallete.id === id);
+        return palletes.find(pallete => pallete.id === id);
+    };
+
+    const savePallete = newPallete => {
+        setPalletes([...palletes, newPallete]);
     };
 
     return (
         <Switch>
             <Route exact path="/pallete/new">
-                <NewPalleteForm />
+                <NewPalleteForm savePallete={savePallete} />
             </Route>
 
             <Route
@@ -44,7 +51,7 @@ function App() {
             />
 
             <Route exact path="/">
-                <PalleteList palletes={seedColors} />
+                <PalleteList palletes={palletes} />
             </Route>
         </Switch>
     );

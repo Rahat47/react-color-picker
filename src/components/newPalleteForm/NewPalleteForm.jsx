@@ -16,9 +16,11 @@ import { ChromePicker } from "react-color";
 import DraggableColorBox from "../DraggableColorBox/DraggableColorBox.jsx";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-const NewPalleteForm = () => {
+const NewPalleteForm = ({ savePallete }) => {
     const classes = useStyles();
+    const history = useHistory();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("rgba(255, 255, 255, 1)");
     const [colors, setColors] = useState([]);
@@ -71,11 +73,25 @@ const NewPalleteForm = () => {
         setColorName(e.target.value);
     };
 
+    const createAndSavePallete = name => {
+        const palleteName = "new test pallete";
+        const nameSlug = palleteName.toLowerCase().replace(/\s/g, "-");
+        const newPallete = {
+            paletteName: palleteName,
+            id: nameSlug,
+            colors,
+        };
+        savePallete(newPallete);
+        setOpen(false);
+        history.push("/");
+    };
+
     return (
         <div className={classes.root}>
             <CssBaseline />
             <AppBar
                 position="fixed"
+                color="default"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
@@ -94,8 +110,15 @@ const NewPalleteForm = () => {
                         <Menu />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
+                        Create a new color palette
                     </Typography>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={createAndSavePallete}
+                    >
+                        Save Pallete
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer
