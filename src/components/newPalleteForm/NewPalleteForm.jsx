@@ -18,14 +18,16 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-const NewPalleteForm = ({ savePallete }) => {
+const NewPalleteForm = ({ savePallete, palletes }) => {
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("rgba(255, 255, 255, 1)");
     const [colors, setColors] = useState([]);
     const [colorName, setColorName] = useState("");
+    const [newPalleteName, setNewPalleteName] = useState("");
 
+    //?Adds custom validator to the form
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
             return colors.every(
@@ -36,8 +38,16 @@ const NewPalleteForm = ({ savePallete }) => {
         ValidatorForm.addValidationRule("isColorUnique", value => {
             return colors.every(col => col.color !== color);
         });
-    }, [color, colors]);
 
+        ValidatorForm.addValidationRule("isPalleteNameUnique", value => {
+            return palletes.every(
+                ({ paletteName }) =>
+                    paletteName.toLowerCase() !== value.toLowerCase()
+            );
+        });
+    }, [color, colors, palletes]);
+
+    //? utils for the drawer to open and close
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -46,6 +56,7 @@ const NewPalleteForm = ({ savePallete }) => {
         setOpen(false);
     };
 
+    //? ulit for the color picker
     const updateCurrentColor = color => {
         console.log(color);
         // const newColorHex = color.hex;
@@ -53,10 +64,6 @@ const NewPalleteForm = ({ savePallete }) => {
         // const newColorHSLA = `hsla(${color.hsl.h}, ${color.hsl.s}, ${color.hsl.l}, ${color.hsl.a})`;
         // const newColorHSL = `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`;
         setColor(newColorRgba);
-    };
-
-    const clearColors = () => {
-        setColors([]);
     };
 
     const createColor = () => {
@@ -73,8 +80,8 @@ const NewPalleteForm = ({ savePallete }) => {
         setColorName(e.target.value);
     };
 
-    const createAndSavePallete = name => {
-        const palleteName = "new test pallete";
+    const createAndSavePallete = () => {
+        const palleteName = newPalleteName;
         const nameSlug = palleteName.toLowerCase().replace(/\s/g, "-");
         const newPallete = {
             paletteName: palleteName,
@@ -112,13 +119,27 @@ const NewPalleteForm = ({ savePallete }) => {
                     <Typography variant="h6" noWrap>
                         Create a new color palette
                     </Typography>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={createAndSavePallete}
-                    >
-                        Save Pallete
-                    </Button>
+
+                    <ValidatorForm onSubmit={createAndSavePallete}>
+                        <TextValidator
+                            label="Pallete Name"
+                            value={newPalleteName}
+                            validators={["required", "isPalleteNameUnique"]}
+                            errorMessages={[
+                                "Please enter a Pallete Name",
+                                "The Pallete name is already used",
+                            ]}
+                            onChange={e => setNewPalleteName(e.target.value)}
+                        />
+
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                        >
+                            Save Pallete
+                        </Button>
+                    </ValidatorForm>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -140,7 +161,7 @@ const NewPalleteForm = ({ savePallete }) => {
 
                 <div>
                     <Button
-                        onClick={clearColors}
+                        onClick={() => setColors([])}
                         variant="contained"
                         color="secondary"
                     >

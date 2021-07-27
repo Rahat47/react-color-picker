@@ -22,7 +22,7 @@ function App() {
     return (
         <Switch>
             <Route exact path="/pallete/new">
-                <NewPalleteForm savePallete={savePallete} />
+                <NewPalleteForm palletes={palletes} savePallete={savePallete} />
             </Route>
 
             <Route
