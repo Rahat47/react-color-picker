@@ -13,10 +13,11 @@ import { Menu, ChevronLeft } from "@material-ui/icons";
 import { useState } from "react";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
 import { ChromePicker } from "react-color";
-import DraggableColorBox from "../DraggableColorBox/DraggableColorBox.jsx";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import DraggableColorList from "../DraggableColorList/DraggableColorList.jsx";
+import { arrayMove } from "react-sortable-hoc";
 
 const NewPalleteForm = ({ savePallete, palletes }) => {
     const classes = useStyles();
@@ -79,6 +80,7 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
         setColorName(e.target.value);
     };
 
+    //well the name says it all
     const createAndSavePallete = () => {
         const palleteName = newPalleteName;
         const nameSlug = palleteName.toLowerCase().replace(/\s/g, "-");
@@ -92,9 +94,15 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
         history.push("/");
     };
 
+    //Deletes a color from the pallete
     const deleteColor = colorName => {
         const newColors = colors.filter(col => col.name !== colorName);
         setColors(newColors);
+    };
+
+    //On sort end method for the react sortable HOC component
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        setColors(arrayMove(colors, oldIndex, newIndex));
     };
 
     return (
@@ -219,14 +227,12 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
             >
                 <div className={classes.drawerHeader} />
 
-                {colors.map(color => (
-                    <DraggableColorBox
-                        handleDelete={deleteColor}
-                        key={color.name}
-                        color={color.color}
-                        name={color.name}
-                    />
-                ))}
+                <DraggableColorList
+                    onSortEnd={onSortEnd}
+                    axis="xy"
+                    colors={colors}
+                    deleteColor={deleteColor}
+                />
             </main>
         </div>
     );
