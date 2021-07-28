@@ -1,7 +1,7 @@
 import { useStyles } from "./DraggableColorbox.styles.js";
 import { Delete } from "@material-ui/icons";
 
-const DraggableColorBox = ({ color, name }) => {
+const DraggableColorBox = ({ color, name, handleDelete }) => {
     const classes = useStyles();
 
     return (
@@ -13,9 +13,11 @@ const DraggableColorBox = ({ color, name }) => {
         >
             <div className={classes.boxContent}>
                 <span>{name}</span>
-                <span>
-                    <Delete className={classes.deleteIcon} />
-                </span>
+
+                <Delete
+                    className={classes.deleteIcon}
+                    onClick={() => handleDelete(name)}
+                />
             </div>
         </div>
     );

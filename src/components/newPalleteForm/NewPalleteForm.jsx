@@ -73,7 +73,6 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
         };
         setColors([...colors, newColor]);
         setColorName("");
-        setColor("rgba(255, 255, 255, 1)");
     };
 
     const handleChange = e => {
@@ -91,6 +90,11 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
         savePallete(newPallete);
         setOpen(false);
         history.push("/");
+    };
+
+    const deleteColor = colorName => {
+        const newColors = colors.filter(col => col.name !== colorName);
+        setColors(newColors);
     };
 
     return (
@@ -215,9 +219,10 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
             >
                 <div className={classes.drawerHeader} />
 
-                {colors.map((color, i) => (
+                {colors.map(color => (
                     <DraggableColorBox
-                        key={i}
+                        handleDelete={deleteColor}
+                        key={color.name}
                         color={color.color}
                         name={color.name}
                     />
