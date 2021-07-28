@@ -17,16 +17,18 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import DraggableColorList from "../DraggableColorList/DraggableColorList.jsx";
-import { arrayMove } from "react-sortable-hoc";
+// import { arrayMove } from "react-sortable-hoc";
+import arrayMove from "array-move";
 
 const NewPalleteForm = ({ savePallete, palletes }) => {
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("rgba(255, 255, 255, 1)");
-    const [colors, setColors] = useState([]);
+    const [colors, setColors] = useState(palletes[0].colors);
     const [colorName, setColorName] = useState("");
     const [newPalleteName, setNewPalleteName] = useState("");
+    const isPalleteFull = colors.length >= 20;
 
     //?Adds custom validator to the form
     useEffect(() => {
@@ -105,6 +107,37 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
         setColors(arrayMove(colors, oldIndex, newIndex));
     };
 
+    const getRandomColor = () => {
+        //pick random color from existing palletes, and return it
+        const randomPallete =
+            palletes[Math.floor(Math.random() * palletes.length)];
+        const randomColor =
+            randomPallete.colors[
+                Math.floor(Math.random() * randomPallete.colors.length)
+            ];
+        const newColor = {
+            name: randomColor.name,
+            color: randomColor.color,
+        };
+
+        return newColor;
+    };
+
+    const addRandomColor = () => {
+        //Check if the new color name is unique. if it is unique, add it to the colors state else call the function again
+        const newColor = getRandomColor();
+        if (
+            colors.every(
+                color =>
+                    color.name.toLowerCase() !== newColor.name.toLowerCase()
+            )
+        ) {
+            setColors([...colors, newColor]);
+        } else {
+            addRandomColor();
+        }
+    };
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -179,7 +212,12 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
                     >
                         Clear Pallete
                     </Button>
-                    <Button variant="contained" color="primary">
+                    <Button
+                        onClick={addRandomColor}
+                        variant="contained"
+                        color="primary"
+                        disabled={isPalleteFull}
+                    >
                         Random Color
                     </Button>
                 </div>
@@ -214,8 +252,9 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
                         }}
                         variant="contained"
                         type="submit"
+                        disabled={isPalleteFull}
                     >
-                        Add Color
+                        {isPalleteFull ? "Palette Full" : "Add Color"}
                     </Button>
                 </ValidatorForm>
             </Drawer>
