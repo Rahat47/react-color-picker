@@ -8,14 +8,29 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import clsx from "clsx";
+import { useEffect } from "react";
 import { useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { Link } from "react-router-dom";
 import { useStyles } from "./PalleteFormNav.styles.js";
 
-const PalleteFormNav = ({ open, createAndSavePallete, handleDrawerOpen }) => {
+const PalleteFormNav = ({
+    open,
+    createAndSavePallete,
+    handleDrawerOpen,
+    palletes,
+}) => {
     const classes = useStyles();
     const [newPalleteName, setNewPalleteName] = useState("");
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule("isPalleteNameUnique", value => {
+            return palletes.every(
+                ({ paletteName }) =>
+                    paletteName.toLowerCase() !== value.toLowerCase()
+            );
+        });
+    }, [palletes]);
 
     return (
         <>
