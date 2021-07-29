@@ -1,15 +1,12 @@
 import clsx from "clsx";
 import {
-    AppBar,
     Button,
-    CssBaseline,
     Divider,
     Drawer,
     IconButton,
-    Toolbar,
     Typography,
 } from "@material-ui/core";
-import { Menu, ChevronLeft } from "@material-ui/icons";
+import { ChevronLeft } from "@material-ui/icons";
 import { useState } from "react";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
 import { ChromePicker } from "react-color";
@@ -19,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import DraggableColorList from "../DraggableColorList/DraggableColorList.jsx";
 // import { arrayMove } from "react-sortable-hoc";
 import arrayMove from "array-move";
+import PalleteFormNav from "../PalleteFormNav/PalleteFormNav.jsx";
 
 const NewPalleteForm = ({ savePallete, palletes }) => {
     const classes = useStyles();
@@ -27,7 +25,6 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
     const [color, setColor] = useState("rgba(255, 255, 255, 1)");
     const [colors, setColors] = useState(palletes[0].colors);
     const [colorName, setColorName] = useState("");
-    const [newPalleteName, setNewPalleteName] = useState("");
     const isPalleteFull = colors.length >= 20;
 
     //?Adds custom validator to the form
@@ -83,11 +80,10 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
     };
 
     //well the name says it all
-    const createAndSavePallete = () => {
-        const palleteName = newPalleteName;
-        const nameSlug = palleteName.toLowerCase().replace(/\s/g, "-");
+    const createAndSavePallete = newPalleteName => {
+        const nameSlug = newPalleteName.toLowerCase().replace(/\s/g, "-");
         const newPallete = {
-            paletteName: palleteName,
+            paletteName: newPalleteName,
             id: nameSlug,
             colors,
         };
@@ -140,53 +136,11 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                color="default"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(
-                            classes.menuButton,
-                            open && classes.hide
-                        )}
-                    >
-                        <Menu />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Create a new color palette
-                    </Typography>
-
-                    <ValidatorForm onSubmit={createAndSavePallete}>
-                        <TextValidator
-                            label="Pallete Name"
-                            value={newPalleteName}
-                            validators={["required", "isPalleteNameUnique"]}
-                            errorMessages={[
-                                "Please enter a Pallete Name",
-                                "The Pallete name is already used",
-                            ]}
-                            onChange={e => setNewPalleteName(e.target.value)}
-                        />
-
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                        >
-                            Save Pallete
-                        </Button>
-                    </ValidatorForm>
-                </Toolbar>
-            </AppBar>
+            <PalleteFormNav
+                open={open}
+                createAndSavePallete={createAndSavePallete}
+                handleDrawerOpen={handleDrawerOpen}
+            />
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
