@@ -8,7 +8,8 @@ import { useStyles } from "./ColorPickerForm.styles";
 const ColorPickerForm = ({ setColors, colors, isPalleteFull }) => {
     const classes = useStyles();
     const [colorName, setColorName] = useState("");
-    const [color, setColor] = useState("rgba(255, 255, 255, 1)");
+    //set random rgba a color as initial state
+    const [color, setColor] = useState(returnRandomColor());
 
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -30,6 +31,12 @@ const ColorPickerForm = ({ setColors, colors, isPalleteFull }) => {
         setColor(newColorRgba);
     };
 
+    function returnRandomColor() {
+        return `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+            Math.random() * 255
+        )}, ${Math.floor(Math.random() * 255)}, 1)`;
+    }
+
     const createColor = () => {
         const newColor = {
             name: colorName,
@@ -37,7 +44,7 @@ const ColorPickerForm = ({ setColors, colors, isPalleteFull }) => {
         };
         setColors([...colors, newColor]);
         setColorName("");
-        setColor("");
+        setColor(returnRandomColor());
     };
 
     const handleChange = e => {
