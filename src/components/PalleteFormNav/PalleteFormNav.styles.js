@@ -2,11 +2,19 @@ import { makeStyles } from "@material-ui/core";
 const drawerWidth = 250;
 
 export const useStyles = makeStyles(theme => ({
+    root: {
+        display: "flex"
+    },
+
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+
+        flexDirection: "row",
+        justifyContent: "space-between",
+        height: "64px"
     },
 
     appBarShift: {
@@ -24,5 +32,10 @@ export const useStyles = makeStyles(theme => ({
 
     hide: {
         display: 'none',
+    },
+
+    navBtns: {
+        display: 'flex',
+
     },
 }));

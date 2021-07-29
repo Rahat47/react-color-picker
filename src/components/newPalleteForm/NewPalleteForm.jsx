@@ -109,31 +109,38 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
                     </IconButton>
                 </div>
                 <Divider />
-                <Typography variant="h4">Design Your Pallete</Typography>
 
-                <div>
-                    <Button
-                        onClick={() => setColors([])}
-                        variant="contained"
-                        color="secondary"
-                    >
-                        Clear Pallete
-                    </Button>
-                    <Button
-                        onClick={addRandomColor}
-                        variant="contained"
-                        color="primary"
-                        disabled={isPalleteFull}
-                    >
-                        Random Color
-                    </Button>
+                <div className={classes.container}>
+                    <Typography variant="h4" gutterBottom>
+                        Design Your Pallete
+                    </Typography>
+
+                    <div className={classes.btns}>
+                        <Button
+                            className={classes.btn}
+                            onClick={() => setColors([])}
+                            variant="contained"
+                            color="secondary"
+                        >
+                            Clear Pallete
+                        </Button>
+                        <Button
+                            className={classes.btn}
+                            onClick={addRandomColor}
+                            variant="contained"
+                            color="primary"
+                            disabled={isPalleteFull}
+                        >
+                            Random Color
+                        </Button>
+                    </div>
+
+                    <ColorPickerForm
+                        isPalleteFull={isPalleteFull}
+                        colors={colors}
+                        setColors={setColors}
+                    />
                 </div>
-
-                <ColorPickerForm
-                    isPalleteFull={isPalleteFull}
-                    colors={colors}
-                    setColors={setColors}
-                />
             </Drawer>
 
             <main

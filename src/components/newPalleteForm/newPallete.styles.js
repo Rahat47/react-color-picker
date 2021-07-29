@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-const drawerWidth = 250;
+const drawerWidth = 350;
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,6 +12,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        display: "flex",
+        alignItems: "center"
     },
     drawerHeader: {
         display: 'flex',
@@ -38,4 +40,19 @@ export const useStyles = makeStyles((theme) => ({
         }),
         marginLeft: 0,
     },
+
+    container: {
+        width: '90%',
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    btns: {
+        width: "100%",
+    },
+    btn: {
+        width: "50%",
+    }
 }));

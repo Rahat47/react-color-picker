@@ -33,7 +33,7 @@ const PalleteFormNav = ({
     }, [palletes]);
 
     return (
-        <>
+        <div className={classes.root}>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -56,9 +56,15 @@ const PalleteFormNav = ({
                         <Menu />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Create a new color palette
+                        Create a Pallete
                     </Typography>
-
+                </Toolbar>
+                <div className={classes.navBtns}>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <Button variant="contained" color="secondary">
+                            Go Back
+                        </Button>
+                    </Link>
                     <ValidatorForm
                         onSubmit={() => createAndSavePallete(newPalleteName)}
                     >
@@ -80,16 +86,10 @@ const PalleteFormNav = ({
                         >
                             Save Pallete
                         </Button>
-
-                        <Link to="/" style={{ textDecoration: "none" }}>
-                            <Button variant="contained" color="secondary">
-                                Go Back
-                            </Button>
-                        </Link>
                     </ValidatorForm>
-                </Toolbar>
+                </div>
             </AppBar>
-        </>
+        </div>
     );
 };
 
