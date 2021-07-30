@@ -15,9 +15,9 @@ const PalleteMetaForm = ({
     palletes,
     createAndSavePallete,
     setFormShowing,
-    formShowing,
 }) => {
     const [newPalleteName, setNewPalleteName] = useState("");
+    const [stage, setStage] = useState("form");
 
     useEffect(() => {
         ValidatorForm.addValidationRule("isPalleteNameUnique", value => {
@@ -29,52 +29,78 @@ const PalleteMetaForm = ({
     }, [palletes]);
 
     const handleClose = () => {
+        setStage("form");
+        setFormShowing(false);
+    };
+
+    const showEmojiPicker = () => {
+        setStage("emoji");
+    };
+
+    const savePallete = newEmoji => {
+        const emoji = newEmoji.native;
+
+        createAndSavePallete(newPalleteName, emoji);
+        setStage("form");
         setFormShowing(false);
     };
 
     return (
-        <Dialog
-            open={formShowing}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-        >
-            <DialogTitle id="form-dialog-title">
-                Choose a Pallete Name
-            </DialogTitle>
-            <ValidatorForm
-                onSubmit={() => createAndSavePallete(newPalleteName)}
+        <>
+            <Dialog open={stage === "emoji"} onClose={handleClose}>
+                <DialogTitle>Choose a pallete Emoji</DialogTitle>
+                <Picker
+                    onSelect={savePallete}
+                    theme="light"
+                    emojiTooltip
+                    title="Pick an Emoji"
+                    showSkinTones={false}
+                />
+            </Dialog>
+
+            <Dialog
+                open={stage === "form"}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
             >
-                <DialogContent>
-                    <Picker theme="dark" emojiTooltip title="Pick an Emoji" />
+                <DialogTitle id="form-dialog-title">
+                    Choose a Pallete Name
+                </DialogTitle>
+                <ValidatorForm onSubmit={showEmojiPicker}>
+                    <DialogContent>
+                        <DialogContentText>
+                            Please enter a name for your new beautiful pallete.
+                            Make sure the name is unique
+                        </DialogContentText>
 
-                    <DialogContentText>
-                        Please enter a name for your new beautiful pallete. Make
-                        sure the name is unique
-                    </DialogContentText>
-
-                    <TextValidator
-                        label="Pallete Name"
-                        fullWidth
-                        margin="normal"
-                        value={newPalleteName}
-                        validators={["required", "isPalleteNameUnique"]}
-                        errorMessages={[
-                            "Please enter a Pallete Name",
-                            "The Pallete name is already used",
-                        ]}
-                        onChange={e => setNewPalleteName(e.target.value)}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button variant="contained" color="primary" type="submit">
-                        Save Pallete
-                    </Button>
-                </DialogActions>
-            </ValidatorForm>
-        </Dialog>
+                        <TextValidator
+                            label="Pallete Name"
+                            fullWidth
+                            margin="normal"
+                            value={newPalleteName}
+                            validators={["required", "isPalleteNameUnique"]}
+                            errorMessages={[
+                                "Please enter a Pallete Name",
+                                "The Pallete name is already used",
+                            ]}
+                            onChange={e => setNewPalleteName(e.target.value)}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                        >
+                            Save Pallete
+                        </Button>
+                    </DialogActions>
+                </ValidatorForm>
+            </Dialog>
+        </>
     );
 };
 

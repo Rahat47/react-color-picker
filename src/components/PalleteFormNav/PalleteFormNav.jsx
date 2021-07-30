@@ -74,7 +74,6 @@ const PalleteFormNav = ({
                     createAndSavePallete={createAndSavePallete}
                     palletes={palletes}
                     setFormShowing={setFormShowing}
-                    formShowing={formShowing}
                 />
             )}
         </div>

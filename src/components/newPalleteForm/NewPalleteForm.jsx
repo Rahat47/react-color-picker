@@ -32,11 +32,12 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
     };
 
     //well the name says it all
-    const createAndSavePallete = newPalleteName => {
+    const createAndSavePallete = (newPalleteName, emoji) => {
         const nameSlug = newPalleteName.toLowerCase().replace(/\s/g, "-");
         const newPallete = {
             paletteName: newPalleteName,
             id: nameSlug,
+            emoji,
             colors,
         };
         savePallete(newPallete);
