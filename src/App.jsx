@@ -8,7 +8,10 @@ import NewPalleteForm from "./components/newPalleteForm/NewPalleteForm.jsx";
 import { useState } from "react";
 
 function App() {
-    const [palletes, setPalletes] = useState(seedColors);
+    //create a variable called allPalletes and check if localStorage has this data
+    const allPalletes = JSON.parse(localStorage.getItem("palletes"));
+
+    const [palletes, setPalletes] = useState(allPalletes || seedColors);
 
     //finds a pallete from seedColors array where id mathces the parameter ID
     const findPalleteById = id => {
@@ -16,7 +19,20 @@ function App() {
     };
 
     const savePallete = newPallete => {
-        setPalletes([...palletes, newPallete]);
+        const newPalletes = [...palletes, newPallete];
+        syncLocalstorage(newPalletes);
+        setPalletes(newPalletes);
+    };
+
+    const deletePallete = id => {
+        const newPalletes = palletes.filter(pallete => pallete.id !== id);
+        syncLocalstorage(newPalletes);
+        setPalletes(newPalletes);
+    };
+
+    const syncLocalstorage = newPalletes => {
+        //save palletes to localstorage
+        localStorage.setItem("palletes", JSON.stringify(newPalletes));
     };
 
     return (
@@ -51,7 +67,10 @@ function App() {
             />
 
             <Route exact path="/">
-                <PalleteList palletes={palletes} />
+                <PalleteList
+                    deletePallete={deletePallete}
+                    palletes={palletes}
+                />
             </Route>
         </Switch>
     );

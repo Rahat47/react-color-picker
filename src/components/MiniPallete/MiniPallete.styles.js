@@ -8,10 +8,11 @@ export const useStyles = makeStyles(theme => ({
         padding: "0.5rem",
         position: "relative",
         overflow: "hidden",
+        cursor: "pointer",
 
-        "&:hover": {
-            cursor: "pointer",
-
+        "&:hover svg": {
+            opacity: 1,
+            visibility: "visible"
         }
     },
     colors: {
@@ -42,5 +43,20 @@ export const useStyles = makeStyles(theme => ({
     emoji: {
         marginLeft: "0.5rem",
         fontSize: "1.5rem",
+    },
+
+    deleteIcon: {
+        color: "white",
+        backgroundColor: "#eb3d30",
+        width: "20px",
+        height: "20px",
+        position: "absolute",
+        top: "0",
+        right: "0",
+        padding: "10px",
+        zIndex: "20",
+        opacity: 0,
+        transition: "opacity 300ms ease-in-out",
+        visibility: "hidden",
     }
 }));

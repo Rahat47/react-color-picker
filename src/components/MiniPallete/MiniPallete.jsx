@@ -1,7 +1,8 @@
 import { useStyles } from "./MiniPallete.styles.js";
 import { useHistory } from "react-router-dom";
+import { Delete } from "@material-ui/icons";
 
-const MiniPallete = ({ paletteName, id, emoji, colors }) => {
+const MiniPallete = ({ paletteName, id, emoji, colors, deletePallete }) => {
     const classes = useStyles();
     const history = useHistory();
     return (
@@ -9,6 +10,14 @@ const MiniPallete = ({ paletteName, id, emoji, colors }) => {
             onClick={() => history.push(`/pallete/${id}`)}
             className={classes.root}
         >
+            <Delete
+                onClick={e => {
+                    e.stopPropagation();
+                    deletePallete(id);
+                }}
+                className={classes.deleteIcon}
+            />
+
             <div className={classes.colors}>
                 {colors.map((color, index) => (
                     <div

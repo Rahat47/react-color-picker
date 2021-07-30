@@ -6,7 +6,7 @@ import {
     Toolbar,
     Typography,
 } from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+import { Palette } from "@material-ui/icons";
 import clsx from "clsx";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -43,7 +43,7 @@ const PalleteFormNav = ({
                             open && classes.hide
                         )}
                     >
-                        <Menu />
+                        <Palette />
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         Create a Pallete
