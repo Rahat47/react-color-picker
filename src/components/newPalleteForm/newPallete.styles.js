@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
+        marginLeft: "auto"
     },
     content: {
         flexGrow: 1,

@@ -8,10 +8,9 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import clsx from "clsx";
-import { useEffect } from "react";
 import { useState } from "react";
-import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { Link } from "react-router-dom";
+import PalleteMetaForm from "../palleteMetaForm/PalleteMetaForm.jsx";
 import { useStyles } from "./PalleteFormNav.styles.js";
 
 const PalleteFormNav = ({
@@ -21,16 +20,7 @@ const PalleteFormNav = ({
     palletes,
 }) => {
     const classes = useStyles();
-    const [newPalleteName, setNewPalleteName] = useState("");
-
-    useEffect(() => {
-        ValidatorForm.addValidationRule("isPalleteNameUnique", value => {
-            return palletes.every(
-                ({ paletteName }) =>
-                    paletteName.toLowerCase() !== value.toLowerCase()
-            );
-        });
-    }, [palletes]);
+    const [formShowing, setFormShowing] = useState(false);
 
     return (
         <div className={classes.root}>
@@ -61,34 +51,32 @@ const PalleteFormNav = ({
                 </Toolbar>
                 <div className={classes.navBtns}>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        <Button variant="contained" color="secondary">
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                        >
                             Go Back
                         </Button>
                     </Link>
-                    <ValidatorForm
-                        onSubmit={() => createAndSavePallete(newPalleteName)}
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="primary"
+                        onClick={() => setFormShowing(true)}
                     >
-                        <TextValidator
-                            label="Pallete Name"
-                            value={newPalleteName}
-                            validators={["required", "isPalleteNameUnique"]}
-                            errorMessages={[
-                                "Please enter a Pallete Name",
-                                "The Pallete name is already used",
-                            ]}
-                            onChange={e => setNewPalleteName(e.target.value)}
-                        />
-
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                        >
-                            Save Pallete
-                        </Button>
-                    </ValidatorForm>
+                        Save Pallete
+                    </Button>
                 </div>
             </AppBar>
+            {formShowing && (
+                <PalleteMetaForm
+                    createAndSavePallete={createAndSavePallete}
+                    palletes={palletes}
+                    setFormShowing={setFormShowing}
+                    formShowing={formShowing}
+                />
+            )}
         </div>
     );
 };

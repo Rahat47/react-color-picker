@@ -35,7 +35,12 @@ export const useStyles = makeStyles(theme => ({
     },
 
     navBtns: {
+        marginRight: "1rem",
         display: 'flex',
+        alignItems: 'center',
+    },
 
+    button: {
+        margin: "0 0.5rem"
     },
 }));
