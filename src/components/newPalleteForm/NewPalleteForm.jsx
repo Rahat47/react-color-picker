@@ -156,6 +156,7 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
                     axis="xy"
                     colors={colors}
                     deleteColor={deleteColor}
+                    distance={20}
                 />
             </main>
         </div>
