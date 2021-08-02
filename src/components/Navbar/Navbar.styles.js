@@ -22,6 +22,10 @@ export const useStyles = makeStyles(theme => ({
             textDecoration: "none",
             color: "black"
         },
+
+        [theme.breakpoints.down("xs")]: {
+            display: "none"
+        },
     },
     slider: {
         width: "340px",
@@ -46,8 +50,11 @@ export const useStyles = makeStyles(theme => ({
             height: "13px",
             marginLeft: "-7px",
             marginTop: "-3px"
-        }
+        },
 
+        [theme.breakpoints.down("md")]: {
+            width: "150px"
+        },
 
     },
 

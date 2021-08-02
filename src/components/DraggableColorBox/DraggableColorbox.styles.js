@@ -13,7 +13,22 @@ export const useStyles = makeStyles(theme => ({
         "&:hover svg": {
             color: "white",
             transform: "scale(1.5)"
-        }
+        },
+
+        [theme.breakpoints.down("lg")]: {
+            width: "25%",
+            height: "20%"
+        },
+
+        [theme.breakpoints.down("md")]: {
+            width: "50%",
+            height: "15%"
+        },
+
+        [theme.breakpoints.down("sm")]: {
+            width: "100%",
+            height: "10%"
+        },
     },
 
     boxContent: {

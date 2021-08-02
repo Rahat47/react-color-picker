@@ -28,7 +28,7 @@ export const useStyles = makeStyles(theme => ({
         display: "inline-block",
         margin: "0 auto",
         position: "relative",
-        marginBottom: "-3.5px",
+        marginBottom: "-4.5px",
     },
     title: {
         display: "flex",
@@ -39,10 +39,18 @@ export const useStyles = makeStyles(theme => ({
         paddingTop: "0.5rem",
         fontSize: "1rem",
         position: "relative",
+
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "0.8rem"
+        }
     },
     emoji: {
         marginLeft: "0.5rem",
         fontSize: "1.5rem",
+
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "1.2rem"
+        }
     },
 
     deleteIcon: {

@@ -38,9 +38,19 @@ export const useStyles = makeStyles(theme => ({
         marginRight: "1rem",
         display: 'flex',
         alignItems: 'center',
+
+        [theme.breakpoints.down('sm')]: {
+            marginRight: "0.2rem",
+        },
     },
 
     button: {
-        margin: "0 0.5rem"
+        margin: "0 0.5rem",
+
+        [theme.breakpoints.down('sm')]: {
+            margin: "0",
+            fontSize: "12px",
+            lineHeight: "1.3"
+        },
     },
 }));
