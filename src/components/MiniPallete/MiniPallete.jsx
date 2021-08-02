@@ -2,7 +2,14 @@ import { useStyles } from "./MiniPallete.styles.js";
 import { useHistory } from "react-router-dom";
 import { Delete } from "@material-ui/icons";
 
-const MiniPallete = ({ paletteName, id, emoji, colors, deletePallete }) => {
+const MiniPallete = ({
+    paletteName,
+    id,
+    emoji,
+    colors,
+    openDialog,
+    deletePallete,
+}) => {
     const classes = useStyles();
     const history = useHistory();
     return (
@@ -13,7 +20,7 @@ const MiniPallete = ({ paletteName, id, emoji, colors, deletePallete }) => {
             <Delete
                 onClick={e => {
                     e.stopPropagation();
-                    deletePallete(id);
+                    openDialog(id);
                 }}
                 className={classes.deleteIcon}
             />
