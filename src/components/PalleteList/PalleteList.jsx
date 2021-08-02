@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import MiniPallete from "../MiniPallete/MiniPallete.jsx";
 import { useStyles } from "./PalleteList.styles.js";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const PalleteList = ({ palletes, deletePallete }) => {
     const classes = useStyles();
@@ -11,15 +12,20 @@ const PalleteList = ({ palletes, deletePallete }) => {
                     <h1>React Colors</h1>
                     <Link to="/pallete/new">Create Pallete</Link>
                 </nav>
-                <div className={classes.palletes}>
+                <TransitionGroup className={classes.palletes}>
                     {palletes.map(pallete => (
-                        <MiniPallete
-                            deletePallete={deletePallete}
+                        <CSSTransition
+                            timeout={500}
+                            classNames="fade"
                             key={pallete.id}
-                            {...pallete}
-                        />
+                        >
+                            <MiniPallete
+                                deletePallete={deletePallete}
+                                {...pallete}
+                            />
+                        </CSSTransition>
                     ))}
-                </div>
+                </TransitionGroup>
             </div>
         </div>
     );

@@ -2,6 +2,20 @@ import { makeStyles } from "@material-ui/core";
 import { backgroundSVG } from "../../helpers/backGround";
 
 export const useStyles = makeStyles(theme => ({
+
+    "@global": {
+        ".fade-exit": {
+            pointerEvents: "none",
+            opacity: 1,
+        },
+
+        ".fade-exit-active": {
+            opacity: 0,
+            transition: "opacity 500ms ease-out"
+        },
+
+    },
+
     root: {
         backgroundColor: "#0c14aa",
         backgroundImage: backgroundSVG,
