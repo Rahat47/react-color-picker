@@ -5,7 +5,6 @@ export const useStyles = makeStyles(theme => ({
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden"
     },
 
     colors: {
@@ -20,6 +19,22 @@ export const useStyles = makeStyles(theme => ({
         marginBottom: "-3.5px",
         background: "black",
         height: "50%",
+
+        [theme.breakpoints.down('lg')]: {
+            width: "25%",
+            height: "33.3333%",
+        },
+
+        [theme.breakpoints.down('md')]: {
+            height: "20%",
+            width: "50%"
+        },
+
+        [theme.breakpoints.down('xs')]: {
+            height: "10%",
+            width: "100%"
+        },
+
     },
 
     backButton: {
@@ -39,6 +54,8 @@ export const useStyles = makeStyles(theme => ({
         padding: "5px",
         border: "none",
         transition: "opacity 0.5s ease",
+
+
     },
 
 

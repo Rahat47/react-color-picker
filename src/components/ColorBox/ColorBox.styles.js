@@ -17,18 +17,21 @@ export const styles = {
 
         [sizes.down("lg")]: {
             width: "25%",
-            height: props => props.palleteId ? "20%" : "50%",
+            height: props => props.palleteId ? "20%" : "33.3333%",
+            marginBottom: "-4.5px"
+
         },
 
         [sizes.down("md")]: {
             width: "50%",
-            height: props => props.palleteId ? "10%" : "50%",
+            height: props => props.palleteId ? "10%" : "20%",
 
         },
 
         [sizes.down("xs")]: {
             width: "100%",
             height: props => props.palleteId ? "5%" : "10%",
+
         },
 
 
@@ -81,6 +84,8 @@ export const styles = {
         opacity: 0,
         color: "white",
 
+
+
         "& h1": {
             fontWeight: 400,
             textShadow: "1px 2px black",
@@ -89,7 +94,10 @@ export const styles = {
             textAlign: "center",
             marginBottom: "0",
             padding: "1rem",
-            textTransform: "uppercase"
+            textTransform: "uppercase",
+            [sizes.down("xs")]: {
+                fontSize: "6rem"
+            },
         },
 
         "& p": {

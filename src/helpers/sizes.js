@@ -19,10 +19,10 @@ const sizes = {
     },
     down(size) {
         const sizes = {
-            xs: "575.98px",
-            sm: "767.98px",
-            md: "991.98px",
-            lg: "1199.98px"
+            xs: "37.4969em",
+            sm: "60em",
+            md: "79.9969em",
+            lg: "119.9969em"
         }
 
         return `@media (max-width: ${sizes[size]})`
