@@ -5,7 +5,6 @@ export const useStyles = makeStyles(theme => ({
         height: "120vh",
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden"
     },
 
     colors: {
