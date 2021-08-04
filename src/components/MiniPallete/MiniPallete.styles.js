@@ -39,6 +39,7 @@ export const useStyles = makeStyles(theme => ({
         paddingTop: "0.5rem",
         fontSize: "1rem",
         position: "relative",
+        fontWeight: "400",
 
         [theme.breakpoints.down("sm")]: {
             fontSize: "0.8rem"

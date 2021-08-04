@@ -51,6 +51,19 @@ export const useStyles = makeStyles(theme => ({
         color: "white",
         alignItems: "center",
 
+        "& h1": {
+            fontSize: "2.5rem",
+            fontWeight: "300",
+            color: "white",
+
+            [theme.breakpoints.down('sm')]: {
+                fontSize: "2rem",
+            },
+            [theme.breakpoints.down('xs')]: {
+                fontSize: "1.5rem",
+            }
+        },
+
         "& a": {
             color: "white",
 

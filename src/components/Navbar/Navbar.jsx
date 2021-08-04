@@ -23,7 +23,7 @@ const Navbar = ({ level, setLevel, handleChange }) => {
     return (
         <header className={classes.root}>
             <div className={classes.logo}>
-                <Link to="/">ColorPicker</Link>
+                <Link to="/">React Color</Link>
             </div>
             {level && (
                 <div className="slider-container">
