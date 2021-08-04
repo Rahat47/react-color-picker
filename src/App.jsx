@@ -104,6 +104,16 @@ function App() {
                                 />
                             </Page>
                         </Route>
+
+                        {/* Fallback Route */}
+                        <Route>
+                            <Page>
+                                <PalleteList
+                                    deletePallete={deletePallete}
+                                    palletes={palletes}
+                                />
+                            </Page>
+                        </Route>
                     </Switch>
                 </CSSTransition>
             </TransitionGroup>
