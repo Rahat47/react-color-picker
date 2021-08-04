@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 //Helpers
-import { generatePalletes } from "./helpers/colorHelpers.js";
 import seedColors from "./seedColors.js";
 // Components
 import Pallete from "./components/Pallete/Pallete.jsx";
@@ -60,41 +59,19 @@ function App() {
                             </Page>
                         </Route>
 
-                        <Route
-                            exact
-                            path="/pallete/:id"
-                            render={routeProps => (
-                                <Page>
-                                    <Pallete
-                                        pallete={generatePalletes(
-                                            findPalleteById(
-                                                routeProps.match.params.id
-                                            )
-                                        )}
-                                    />
-                                </Page>
-                            )}
-                        />
+                        <Route exact path="/pallete/:id">
+                            <Page>
+                                <Pallete findPalleteById={findPalleteById} />
+                            </Page>
+                        </Route>
 
-                        <Route
-                            exact
-                            path="/pallete/:palleteId/:colorId"
-                            render={routeProps => (
-                                <Page>
-                                    <SingleColorPallete
-                                        colorId={
-                                            routeProps.match.params.colorId
-                                        }
-                                        pallete={generatePalletes(
-                                            findPalleteById(
-                                                routeProps.match.params
-                                                    .palleteId
-                                            )
-                                        )}
-                                    />
-                                </Page>
-                            )}
-                        />
+                        <Route exact path="/pallete/:palleteId/:colorId">
+                            <Page>
+                                <SingleColorPallete
+                                    findPalleteById={findPalleteById}
+                                />
+                            </Page>
+                        </Route>
 
                         <Route exact path="/">
                             <Page>
