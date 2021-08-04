@@ -11,7 +11,7 @@ export const useStyles = makeStyles(theme => ({
         marginBottom: "-6.5px",
 
         "&:hover svg": {
-            color: "white",
+            color: theme.palette.secondary.main,
             transform: "scale(1.5)"
         },
 
@@ -37,7 +37,6 @@ export const useStyles = makeStyles(theme => ({
         left: "0",
         bottom: "0",
         padding: "10px",
-        color: "rgba(0, 0, 0, 0.5)",
         letterSpacing: "1px",
         textTransform: "uppercase",
         fontSize: "12px",

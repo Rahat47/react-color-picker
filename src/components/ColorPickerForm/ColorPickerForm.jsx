@@ -43,7 +43,6 @@ const ColorPickerForm = ({ setColors, colors, isPalleteFull }) => {
         };
         setColors([...colors, newColor]);
         setColorName("");
-        setColor(returnRandomColor());
     };
 
     const handleChange = e => {
@@ -61,7 +60,11 @@ const ColorPickerForm = ({ setColors, colors, isPalleteFull }) => {
                 // }}
             />
 
-            <ValidatorForm onSubmit={createColor} className={classes.form}>
+            <ValidatorForm
+                onSubmit={createColor}
+                instantValidate={false}
+                className={classes.form}
+            >
                 <TextValidator
                     label="Color Name"
                     variant="filled"

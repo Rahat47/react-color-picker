@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import { ChevronLeft } from "@material-ui/icons";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
+
+import seedColors from "../../seedColors";
 // Components
 import DraggableColorList from "../DraggableColorList/DraggableColorList.jsx";
 import PalleteFormNav from "../PalleteFormNav/PalleteFormNav.jsx";
@@ -22,7 +24,7 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = useState(false);
-    const [colors, setColors] = useState(palletes[0].colors);
+    const [colors, setColors] = useState(seedColors[0].colors);
     const isPalleteFull = colors.length >= 20;
 
     //? utils for the drawer to open and close
