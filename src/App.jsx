@@ -1,12 +1,15 @@
-import Pallete from "./components/Pallete/Pallete.jsx";
+//Vendor Imports
+import { useState } from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+//Helpers
 import { generatePalletes } from "./helpers/colorHelpers.js";
 import seedColors from "./seedColors.js";
-import { Route, Switch, useLocation } from "react-router-dom";
+// Components
+import Pallete from "./components/Pallete/Pallete.jsx";
 import PalleteList from "./components/PalleteList/PalleteList.jsx";
 import SingleColorPallete from "./components/SingleColorPallete/SingleColorPallete.jsx";
 import NewPalleteForm from "./components/newPalleteForm/NewPalleteForm.jsx";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { useState } from "react";
 import Page from "./helpers/Page.jsx";
 
 function App() {

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import MiniPallete from "../MiniPallete/MiniPallete.jsx";
-import { useStyles } from "./PalleteList.styles.js";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { useStyles } from "./PalleteList.styles.js";
+import MiniPallete from "../MiniPallete/MiniPallete.jsx";
 
 import { useState } from "react";
 import PalleteListDialog from "./PalleteListDialog.jsx";

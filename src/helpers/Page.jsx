@@ -1,3 +1,4 @@
+//Styles
 import "./page.css";
 
 const Page = ({ children }) => {

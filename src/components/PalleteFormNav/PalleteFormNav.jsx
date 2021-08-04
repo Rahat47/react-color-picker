@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
 import {
     AppBar,
     Button,
@@ -7,11 +10,8 @@ import {
     Typography,
 } from "@material-ui/core";
 import { Palette } from "@material-ui/icons";
-import clsx from "clsx";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import PalleteMetaForm from "../palleteMetaForm/PalleteMetaForm.jsx";
 import { useStyles } from "./PalleteFormNav.styles.js";
+import PalleteMetaForm from "../palleteMetaForm/PalleteMetaForm.jsx";
 
 const PalleteFormNav = ({
     open,

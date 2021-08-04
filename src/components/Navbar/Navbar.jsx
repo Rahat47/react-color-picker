@@ -1,9 +1,12 @@
+//Slider Imports
 import "rc-slider/assets/index.css";
-import { Link } from "react-router-dom";
+import Slider from "rc-slider";
+//React
 import { useState } from "react";
+import { Link } from "react-router-dom";
+//MUI Imports
 import { IconButton, MenuItem, Select, Snackbar } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
-import Slider from "rc-slider";
 import { useStyles } from "./Navbar.styles.js";
 
 const Navbar = ({ level, setLevel, handleChange }) => {

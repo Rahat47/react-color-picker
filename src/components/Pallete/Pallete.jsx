@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ColorBox from "../ColorBox/ColorBox.jsx";
 import Navbar from "../Navbar/Navbar.jsx";
 import PalleteFooter from "../PalleteFooter/PalleteFooter.jsx";

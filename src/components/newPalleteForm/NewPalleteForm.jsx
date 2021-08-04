@@ -1,4 +1,9 @@
+// Vendors Imports
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import arrayMove from "array-move";
 import clsx from "clsx";
+// MUI components
 import {
     Button,
     Divider,
@@ -7,11 +12,9 @@ import {
     Typography,
 } from "@material-ui/core";
 import { ChevronLeft } from "@material-ui/icons";
-import { useState } from "react";
 import { useStyles } from "../newPalleteForm/newPallete.styles.js";
-import { useHistory } from "react-router-dom";
+// Components
 import DraggableColorList from "../DraggableColorList/DraggableColorList.jsx";
-import arrayMove from "array-move";
 import PalleteFormNav from "../PalleteFormNav/PalleteFormNav.jsx";
 import ColorPickerForm from "../ColorPickerForm/ColorPickerForm.jsx";
 
