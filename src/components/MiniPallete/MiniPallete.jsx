@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 const MiniPallete = ({ paletteName, id, emoji, colors, openDialog }) => {
     const classes = useStyles();
     const history = useHistory();
-    console.log("Rendering " + paletteName);
     return (
         <div
             onClick={() => history.push(`/pallete/${id}`)}
