@@ -55,7 +55,6 @@ export const styles = {
         zIndex: 0,
         width: "100%",
         height: "100%",
-        transform: "skew(0.1)",
         transition: "transform 0.5s ease-in-out",
         // ...(props => props.copied && {
         //     position: "absolute"
@@ -71,6 +70,8 @@ export const styles = {
 
     copyMsg: {
         position: "fixed",
+        pointerEvents: "none",
+        backfaceVisibility: "hidden",
         top: "0",
         left: "0",
         right: "0",
