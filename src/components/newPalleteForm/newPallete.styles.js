@@ -54,5 +54,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     btn: {
         width: "50%",
+    },
+    colorPickerTitle: {
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "1.5rem"
+        }
     }
 }));

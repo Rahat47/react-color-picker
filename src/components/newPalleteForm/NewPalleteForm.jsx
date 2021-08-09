@@ -117,7 +117,11 @@ const NewPalleteForm = ({ savePallete, palletes }) => {
                 <Divider />
 
                 <div className={classes.container}>
-                    <Typography variant="h4" gutterBottom>
+                    <Typography
+                        className={classes.colorPickerTitle}
+                        variant="h4"
+                        gutterBottom
+                    >
                         Design Your Pallete
                     </Typography>
 
